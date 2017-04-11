@@ -1,16 +1,16 @@
 module Api
   module V1
     class TeamsController < ApplicationController
-      before_action :set_teams
+      before_action :set_team
 
       def index
-        render json: @teams
+        render json: @team
       end
 
       private
 
-      def set_teams
-        @teams = current_user.team
+      def set_team
+        @team = current_user.team
       end
     end
   end
