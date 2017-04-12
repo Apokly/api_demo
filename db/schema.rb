@@ -15,10 +15,10 @@ ActiveRecord::Schema.define(version: 20170411140840) do
   create_table "teams", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.integer  "user_id"
+    t.integer  "owner_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["user_id"], name: "index_teams_on_user_id"
+    t.index ["owner_id"], name: "index_teams_on_owner_id"
   end
 
   create_table "users", force: :cascade do |t|

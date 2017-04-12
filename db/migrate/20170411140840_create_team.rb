@@ -3,7 +3,7 @@ class CreateTeam < ActiveRecord::Migration[5.0]
     create_table :teams do |t|
       t.string :name
       t.text   :description
-      t.belongs_to :user
+      t.belongs_to :owner, references: :user
 
       t.timestamps
     end

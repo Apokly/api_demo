@@ -3,5 +3,5 @@ class User < ApplicationRecord
 
   validates_presence_of :username, :password_digest
 
-  has_one :team
+  has_one :team, foreign_key: :owner_id
 end
