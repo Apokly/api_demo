@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_one :team, foreign_key: :owner_id
 
   def self.from_token_request(request)
-    username = request.params['auth'] && request.params['auth']['username']
+    username = request.params.dig('auth', 'username')
     find_by username: username
   end
 end
