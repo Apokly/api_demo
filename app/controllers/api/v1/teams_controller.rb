@@ -6,7 +6,10 @@ module Api
       before_action :set_team
 
       def index
-        render json: @team
+        record = @team
+        authorize record
+
+        render json: record
       end
 
       private

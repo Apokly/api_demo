@@ -9,7 +9,7 @@ end
 
 gem 'active_model_serializers', '~> 0.10.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.2'
+gem 'rails', '~> 5.1'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
@@ -44,3 +44,4 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'awesome_print'
 gem 'knock', '~> 2.1.1'
+gem 'pundit'
