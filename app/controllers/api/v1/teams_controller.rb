@@ -3,19 +3,38 @@
 module Api
   module V1
     class TeamsController < ApplicationController
-      before_action :set_team
-
       def index
-        record = @team
+        record = Team.all
+
         authorize record
 
         render json: record
       end
 
+      def show
+        record = params[:id] ? Team.find(params[:id]) : current_user.team
+
+        authorize record
+
+        render json: record
+      end
+
+      def update
+        record = params[:id] ? Team.find(params[:id]) : current_user.team
+
+        authorize record, :update?
+
+        if record.update(team_params)
+          render json: record, status: :accepted
+        else
+          render json: record.errors, status: :internal_server_error
+        end
+      end
+
       private
 
-      def set_team
-        @team = current_user.team
+      def team_params
+        params.permit(:name, :description)
       end
     end
   end

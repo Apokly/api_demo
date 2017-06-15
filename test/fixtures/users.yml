@@ -1,3 +1,7 @@
 test:
   username: test
   password_digest: e6r54fgver654fg56er4g6
+
+test2:
+  username: test2
+  password_digest: we56f4e954few4f9we4f98

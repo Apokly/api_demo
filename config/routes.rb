@@ -6,7 +6,8 @@ Rails.application.routes.draw do
       post 'signin' => 'user_token#create'
       post 'signup' => 'user_token#signup'
 
-      resources :teams
+      resources :teams, only: %i[index show update]
+      resource :team, only: %i[show update], as: :user_team
     end
   end
 end
