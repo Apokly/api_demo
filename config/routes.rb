@@ -19,6 +19,8 @@ Rails.application.routes.draw do
         collection do
           post :leave
         end
+
+        resources :races, only: :index
       end
     end
   end
