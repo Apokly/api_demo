@@ -8,3 +8,4 @@
 
 fabien = User.create! username: 'fabien', password: 'test123', password_confirmation: 'test123'
 team = Team.create! name: 'Team test', owner: fabien
+league = League.create! name: 'League beta'

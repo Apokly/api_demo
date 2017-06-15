@@ -3,8 +3,6 @@
 require 'test_helper'
 
 class TeamsControllerTest < ActionDispatch::IntegrationTest
-  # include PolicyTest
-
   def authenticated_header
     Knock::AuthToken.new(payload: { sub: users(:test).id }).token
   end
@@ -20,7 +18,6 @@ class TeamsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'authenticated client can access another team' do
-    team = Team.create! name: 'Team test', owner: users(:test)
     team2 = Team.create! name: 'Team test 2', owner: users(:test2)
 
     get api_v1_team_path(team2), headers: { 'Authorization' => "Bearer #{authenticated_header}" }
@@ -32,7 +29,7 @@ class TeamsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'authenticated client can update his team' do
-    team = Team.create! name: 'Team test', owner: users(:test)
+    Team.create! name: 'Team test', owner: users(:test)
     put api_v1_user_team_path, params: { name: 'Updated name' }, headers: { 'Authorization' => "Bearer #{authenticated_header}" }
 
     assert_response :accepted

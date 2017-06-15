@@ -3,6 +3,8 @@
 class User < ApplicationRecord
   has_secure_password
 
+  belongs_to :league, optional: true
+
   validates_presence_of :username, :password_digest
   validates_uniqueness_of :username
 

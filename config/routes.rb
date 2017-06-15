@@ -8,6 +8,18 @@ Rails.application.routes.draw do
 
       resources :teams, only: %i[index show update]
       resource :team, only: %i[show update], as: :user_team
+
+      resources :leagues, only: :join do
+        member do
+          post :join
+        end
+      end
+
+      resource :league, only: :leave do
+        collection do
+          delete :leave
+        end
+      end
     end
   end
 end

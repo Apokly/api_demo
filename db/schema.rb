@@ -10,22 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170411140840) do
+ActiveRecord::Schema.define(version: 20170615124542) do
+
+  create_table "leagues", force: :cascade do |t|
+    t.string "name"
+  end
 
   create_table "teams", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.integer  "owner_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string "name"
+    t.text "description"
+    t.integer "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["owner_id"], name: "index_teams_on_owner_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "username"
-    t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string "username"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "league_id"
+    t.index ["league_id"], name: "index_users_on_league_id"
   end
 
 end
