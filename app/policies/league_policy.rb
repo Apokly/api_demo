@@ -6,7 +6,7 @@ class LeaguePolicy < ApplicationPolicy
   end
 
   def join?
-    user.league.nil? && record.users.size < League::MAX_USERS
+    user.league.nil? && record.users.size < record.class::MAX_USERS
   end
 
   def leave?
