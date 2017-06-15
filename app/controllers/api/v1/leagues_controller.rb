@@ -19,7 +19,7 @@ module Api
         authorize record, :join?
 
         if current_user.update(league: record)
-          head :accepted
+          render json: @league, status: :accepted
         else
           render json: record.errors, status: :internal_server_error
         end
@@ -38,7 +38,7 @@ module Api
       def show
         record = params[:id] ? League.find(params[:id]) : current_user.league
 
-        authorize record, :show?
+        authorize record || League, :show?
 
         render json: record
       end

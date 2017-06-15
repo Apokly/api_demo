@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
       resource :league, only: %i[leave show] do
         collection do
-          delete :leave
+          post :leave
         end
       end
     end

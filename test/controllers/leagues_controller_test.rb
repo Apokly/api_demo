@@ -35,7 +35,7 @@ class LeaguesControllerTest < ActionDispatch::IntegrationTest
     user.league = leagues(:league_one)
     user.save!
 
-    delete leave_api_v1_league_path, headers: { 'Authorization' => "Bearer #{authenticated_header}" }
+    post leave_api_v1_league_path, headers: { 'Authorization' => "Bearer #{authenticated_header}" }
 
     assert_response :accepted
 
