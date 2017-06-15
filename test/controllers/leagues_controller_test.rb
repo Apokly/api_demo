@@ -27,7 +27,7 @@ class LeaguesControllerTest < ActionDispatch::IntegrationTest
 
     post join_api_v1_league_path(another_league), headers: { 'Authorization' => "Bearer #{authenticated_header}" }
 
-    assert_response :forbidden
+    assert_response :unauthorized
   end
 
   test 'authenticated user can leave a league' do
@@ -35,10 +35,10 @@ class LeaguesControllerTest < ActionDispatch::IntegrationTest
     user.league = leagues(:league_one)
     user.save!
 
-    post leave_api_v1_league_path, headers: { 'Authorization' => "Bearer #{authenticated_header}" }
+    delete leave_api_v1_league_path, headers: { 'Authorization' => "Bearer #{authenticated_header}" }
 
     assert_response :accepted
 
-    assert_nilm user.reload.league
+    assert_nil user.reload.league
   end
 end

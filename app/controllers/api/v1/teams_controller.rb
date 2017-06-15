@@ -6,7 +6,7 @@ module Api
       def index
         record = Team.all
 
-        authorize record
+        authorize record, :index?
 
         render json: record
       end
@@ -14,7 +14,7 @@ module Api
       def show
         record = params[:id] ? Team.find(params[:id]) : current_user.team
 
-        authorize record
+        authorize record, :show?
 
         render json: record
       end

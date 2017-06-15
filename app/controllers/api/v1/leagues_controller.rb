@@ -5,10 +5,20 @@ module Api
     class LeaguesController < ApplicationController
       before_action :set_league, only: :join
 
-      def join
-        return head :forbidden if current_user.league
+      def index
+        records = League.all
 
-        if current_user.update(league: @league)
+        authorize records, :index?
+
+        render json: records
+      end
+
+      def join
+        record = @league
+
+        authorize record, :join?
+
+        if current_user.update(league: record)
           head :accepted
         else
           render json: record.errors, status: :internal_server_error
@@ -16,13 +26,21 @@ module Api
       end
 
       def leave
-        return head :not_found unless current_user.league
+        authorize current_user.league, :leave?
 
         if current_user.update(league: nil)
           head :accepted
         else
           render json: record.errors, status: :internal_server_error
         end
+      end
+
+      def show
+        record = params[:id] ? League.find(params[:id]) : current_user.league
+
+        authorize record, :show?
+
+        render json: record
       end
 
       private

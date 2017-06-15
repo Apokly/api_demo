@@ -9,13 +9,13 @@ Rails.application.routes.draw do
       resources :teams, only: %i[index show update]
       resource :team, only: %i[show update], as: :user_team
 
-      resources :leagues, only: :join do
+      resources :leagues, only: %i[index join show] do
         member do
           post :join
         end
       end
 
-      resource :league, only: :leave do
+      resource :league, only: %i[leave show] do
         collection do
           delete :leave
         end
