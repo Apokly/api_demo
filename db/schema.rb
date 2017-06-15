@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170615124542) do
+ActiveRecord::Schema.define(version: 20170615150817) do
 
   create_table "leagues", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "races", force: :cascade do |t|
+    t.integer "league_id"
+    t.string "name"
+    t.string "country"
+    t.integer "status"
+    t.float "distance"
+    t.index ["league_id"], name: "index_races_on_league_id"
   end
 
   create_table "teams", force: :cascade do |t|

@@ -3,7 +3,14 @@
 class League < ApplicationRecord
   MAX_USERS = 10
 
+  has_many :users
+  has_many :races
+
   validates_presence_of :name
 
-  has_many :users
+  after_create :create_races
+
+  def create_races
+    Leagues::DefaultRacesService.new(self).call
+  end
 end

@@ -35,5 +35,7 @@ module Api
         resource '*', headers: :any, methods: %i[get post options]
       end
     end
+
+        config.autoload_paths += Dir[Rails.root.join('app', 'services', '{**/*/}')]
   end
 end

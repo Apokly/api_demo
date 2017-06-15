@@ -1,0 +1,6 @@
+- name: Le Mans
+  distance: 3.05
+  country: France
+- name: GP Suzuka
+  distance: 7.2
+  country: Japan
