@@ -19,7 +19,7 @@ module Api
         authorize record, :join?
 
         if current_user.update(league: record)
-          render json: @league, status: :accepted
+          render json: record, status: :accepted
         else
           render json: record.errors, status: :internal_server_error
         end
