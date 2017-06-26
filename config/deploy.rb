@@ -35,3 +35,5 @@ set :repo_url, 'git@github.com:Apokly/api_demo.git'
 # set :keep_releases, 5
 
 set :tmp_dir, '/home/deploy/tmp'
+
+set :passenger_restart_with_touch, true
