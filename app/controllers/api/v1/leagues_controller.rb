@@ -6,7 +6,7 @@ module Api
       before_action :set_league, only: :join
 
       def index
-        records = League.all
+        records = League.open
 
         authorize records, :index?
 
@@ -19,7 +19,7 @@ module Api
         authorize record, :join?
 
         if current_user.update(league: record)
-          render json: record, status: :accepted
+          render json: record.reload, status: :accepted
         else
           render json: record.errors, status: :internal_server_error
         end

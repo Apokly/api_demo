@@ -66,4 +66,17 @@ class LeaguesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :unauthorized
   end
+
+  test 'authenticated user whithout league cannot list closed leagues' do
+    league = leagues(:league_one)
+
+    league.update! privacy: :closed
+
+    get api_v1_leagues_path, headers: { 'Authorization' => "Bearer #{authenticated_header}" }
+
+    body = JSON.parse(response.body)
+    league_names = body.map { |c| c['name'] }
+
+    assert_not_includes league_names, league.name
+  end
 end

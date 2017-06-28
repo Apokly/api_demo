@@ -14,6 +14,6 @@ class LeaguePolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    user.league == record || record.open?
   end
 end

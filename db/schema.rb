@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170615150817) do
+ActiveRecord::Schema.define(version: 20170628145531) do
 
   create_table "leagues", force: :cascade do |t|
     t.string "name"
+    t.integer "privacy", default: 0
   end
 
   create_table "races", force: :cascade do |t|
@@ -22,6 +23,8 @@ ActiveRecord::Schema.define(version: 20170615150817) do
     t.string "country"
     t.integer "status"
     t.float "distance"
+    t.datetime "date"
+    t.integer "laps"
     t.index ["league_id"], name: "index_races_on_league_id"
   end
 
@@ -31,6 +34,7 @@ ActiveRecord::Schema.define(version: 20170615150817) do
     t.integer "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "color"
     t.index ["owner_id"], name: "index_teams_on_owner_id"
   end
 

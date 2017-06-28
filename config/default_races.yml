@@ -1,6 +1,8 @@
 - name: Le Mans
   distance: 3.05
   country: France
+  laps: 20
 - name: GP Suzuka
   distance: 7.2
   country: Japan
+  laps: 30
